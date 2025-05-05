@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIT-OASIS</title>
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+
+  <style>
+    * {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      background-color: #14141a;
+      color: #fff;
+    }
+
+    .navbar {
+      background: transparent;
+      margin-top: 30px;
+    }
+
+    .navbar-brand {
+      font-size: 26px;
+      font-weight: bold;
+      margin-left: 80px;
+      color: white !important;
+    }
+
+    .nav-link {
+      color: white !important;
+      font-size: 1.2rem;
+      margin-right: 20px;
+    }
+
+    .nav-link.active,
+    .nav-link:hover {
+      color: orangered !important;
+    }
+
+    .hero {
+      height: 420px;
+      background: url('./images/hero\ packages\ image.png') no-repeat center center/cover;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .card-container {
+      perspective: 1000px;
+    }
+
+    .card-flip {
+
+      width: 100%;
+      aspect-ratio: 3 / 2;
+
+      max-width: 350px;
+      margin: auto;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+    }
+
+    .card-flip:hover .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 85%;
+      height: 70%;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .card-front {
+      background-color: #e9ecef;
+    }
+
+    .card-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.7;
+      display: block;
+    }
+
+    .card-front .overlay1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 10);
+    }
+
+    .card-front .text {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+
+    .card-back {
+      background-color: #5d5c5c;
+      color: black;
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .arrow-btn {
+      background-color: #f97316;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 40%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .arrow-right {
+      right: 4vw;
+
+    }
+
+    .arrow-left {
+      left: 0vw;
+    }
+
+    .tit {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .modal-content {
+      background-color: #2c2c2c;
+    }
+
+    .btn {
+      background-color: #5d5c5c;
+      border: white 1px solid;
+    }
+
+    .btn:hover {
+      background-color: #5d5c5c;
+      border: white 1px solid;
+    }
+
+    .modal-content input,
+    .modal-content select {
+      background-color: #1e1e1e;
+      color: white;
+      border: 1px solid #444;
+    }
+
+    .form-check-label {
+      font-size: 0.9rem;
+    }
+
+    .modal-footer .btn {
+      background-color: #f97316;
+    }
+
+    @media (max-width: 768px) {
+      .card-front .text {
+        font-size: 1rem;
+      }
+
+      .card-back {
+        font-size: 0.8rem;
+      }
+
+      .arrow-btn {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    .modal-body {
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .hero-content h1 {
+      font-size: 28px;
+      letter-spacing: 1px;
+      margin-bottom: 30px;
+    }
+
+    .buttons1 {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+
+    }
+    .buttons1 button:hover{
+      background-color: white;
+      color: black;
+    }
+
+    .btn-custom {
+      background-color: white;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      font-weight: bold;
+    }
+
+    .btn-custom:hover {
+      background-color: orangered;
+      color: white;
+    }
+
+    .facility-text {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+      font-size: 1.3rem;
+    }
+
+    /* Responsive Gallery */
+    .flex-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      padding: 20px;
+    }
+    .divider {
+      display: flex;
+      align-items: center;
+      width: 90%;
+      max-width: 700px;
+      margin: 40px auto;
+    }
+
+    .divider-line {
+      flex-grow: 1;
+      height: 1px;
+      background-color: #555;
+    }
+
+    .divider-dot {
+      width: 10px;
+      height: 10px;
+      background-color: #555;
+      border-radius:50%;
+      margin: 0 10px;
+    }
+    .flex-gallery img {
+      width: auto;
+      height: auto;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .flex-gallery img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .footer {
+      background-color: #111015;
+      color: white;
+      padding: 30px 15px;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    @media (min-width: 768px) {
+      .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand" href="index.html">FIT-OASIS</a>
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link active" href="packages.html">Packages</a></li>
+          <li class="nav-item"><a class="nav-link" href="nutrition.html">Nutrition</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>JOIN OUR COMMUNITY AND UNLOCK EXCLUSIVE BENEFITS</h1>
+      <div class="buttons1">
+        <a href="#packages">
+          <button class="btn btn-custom">PACKAGES FOR ALL</button>
+        </a>
+        <a href="#spackages">
+          <button class="btn btn-custom">Special Membership</button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <div id="packages"  class="container mt-5 position-relative">
+    <h3 class="text-center mb-4 ">FIT-OASIS Packages</h3>
+    <p class="text-center mb-5 fs-5">Packages that covers Everyone</p>
+    <!-- Card Set 1 -->
+    <div class="row justify-content-center" id="card-set-1">
+      <div class="col-12 col-sm-6 col-md-4 mb-4 card-container">
+        <div class="card-flip">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="overlay1"></div>
+              <div class="text">
+                <p class="tit">Fit-Oasis PT</p>
+                <p>₹10,000/month</p>
+              </div>
+              <img src="/images/pt image.png" alt="PT Plan">
+            </div>
+            <div class="card-back">
+              <p>Unlimited access to the gym. First 6 days personal training free for new members.</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal">Book now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 mb-4 card-container">
+        <div class="card-flip">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="overlay1"></div>
+              <div class="text">
+                <p class="tit">Fit-Oasis Pupil</p>
+                <p>₹3,500/month</p>
+              </div>
+              <img src="/images/pupil image.png" alt="Pupil Plan">
+            </div>
+            <div class="card-back">
+              <p>Unlimited access to the gym. First 6 days personal training free for new members.</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal">Book now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 mb-4 card-container position-relative">
+        <div class="card-flip">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="overlay1"></div>
+              <div class="text">
+                <p class="tit">Charge Per Visit</p>
+                <p>₹250/visit</p>
+              </div>
+              <img src="/images/per visit image.png" alt="Per Visit Plan">
+            </div>
+            <div class="card-back">
+              <p>Unlimited access to the gym. First 6 days personal training free for new members.</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal">Book now</button>
+            </div>
+          </div>
+        </div>
+        <div class="arrow-btn arrow-right" onclick="toggleCards('forward')">
+          <img src="/images/right arrow swioe-packages icon.png" width="20">
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Set 2 -->
+    <div class="row justify-content-center d-none" id="card-set-2">
+      <div class="col-12 col-sm-6 col-md-4 mb-4 card-container position-relative">
+        <div class="card-flip">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="overlay1"></div>
+              <div class="text">
+                <p class="tit">Dedicated PT</p>
+                <p>₹5,000/month</p>
+              </div>
+              <img src="/images/dedicated pt image.png" alt="Plan 4">
+            </div>
+            <div class="card-back">
+              <p>Unlimited access to the gym. First 6 days personal training free for new members.</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal">Book now</button>
+            </div>
+          </div>
+        </div>
+        <div class="arrow-btn arrow-left" onclick="toggleCards('back')">
+          <img src="/images/swipe left icon-package.png" width="20">
+        </div>
+      </div>
+
+         <div class="col-12 col-sm-6 col-md-4 mb-4 card-container">
+        <div class="card-flip">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="overlay1"></div>
+              <div class="text">
+                <p class="tit">Avengers Package</p>
+                <p>₹7,000/month</p>
+              </div>
+              <img src="/images/avengers image.png" alt="Plan 5">
+            </div>
+            <div class="card-back">
+              <p>Unlimited access to the gym. First 6 days personal training free for new members.</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal">Book now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 mb-4 card-container">
+        <div class="card-flip">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="overlay1"></div>
+              <div class="text">
+                <p class="tit">Low-Traffic</p>
+                <p>₹8,499/month</p>
+              </div>
+              <img src="/images/low trafic image.png" alt="Plan 6">
+            </div>
+            <div class="card-back">
+              <p>Unlimited access to the gym. First 6 days personal training free for new members.</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal">Book now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking Modal -->
+  <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-white">
+        <div class="modal-header">
+          <h5 class="modal-title" id="bookingModalLabel">MEMBERSHIP BOOKING FORM</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="bookingForm" novalidate>
+          <div class="modal-body">
+            <div class="mb-2"><input type="text" class="form-control" id="fullName" placeholder="Full Name" required>
+            </div>
+            <div class="mb-2"><input type="email" class="form-control" id="email" placeholder="E-Mail Address" required>
+            </div>
+            <div class="mb-2"><input type="tel" class="form-control" id="phone" placeholder="Phone Number"
+                pattern="[0-9]{10}" required></div>
+            <div class="mb-2"><input type="date" class="form-control" id="dob" placeholder="Date of Birth" required>
+            </div>
+            <div class="mb-2"><input type="text" class="form-control" id="address" placeholder="Address" required></div>
+            <div class="row">
+              <div class="col-6 mb-2">
+                <select class="form-select" id="package" required>
+                  <option selected disabled value="">Preferred Package</option>
+                  <option>PT</option>
+                  <option>Pupil</option>
+                  <option>Per Visit</option>
+                  <option>Dedicated PT</option>
+                  <option>Avengers</option>
+                  <option>Low-Traffic</option>
+                </select>
+              </div>
+              <div class="col-6 mb-2">
+                <input type="text" class="form-control" id="medical" placeholder="Medical Conditions if any">
+              </div>
+            </div>
+            <div class="form-check text-start mt-2 mb-2">
+              <input class="form-check-input" type="checkbox" id="agree" required>
+              <label class="form-check-label">
+                Information provided above is correct and I agree to Fit-Oasis Terms and Conditions
+              </label>
+            </div>
+            <div class="text-white small mb-2">
+              <i class="bi bi-info-circle"></i> Transfer payment to the following account or UPI ID and WhatsApp receipt
+              to +91 12345789<br>
+              Account Number: 1234 1234 1234<br>
+              UPI ID: fitoasis@ybl
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn text-white fw-bold w-100">REQUEST NOW</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Divider -->
+  <div class="divider mt-5">
+    <div class="divider-line"></div>
+    <div class="divider-dot"></div>
+    <div class="divider-line"></div>
+  </div>
+
+
+  <!-- Special Packages Section -->
+  <div id="spackages"  class="container mt-5 position-relative">
+    <h3 class="text-center mb-4">FIT-OASIS Packages</h3>
+    <p class="text-center mb-5 fs-5">Packages that covers Everyone</p>
+
+    <!-- Row with Cards -->
+    <div class="row justify-content-center">
+      <!-- Silver Plan -->
+      <div class="col-12 col-sm-6 col-md-4 mb-4">
+        <div class="card-flip">
+          <div class="card-inner">
+            <div class="card-front" style="background-image: url('/images/gallery 3.png');">
+              <div class="overlay"></div>
+              <div class="text">
+                <p class=" mb-3">3 Months Fit-Oasis Silver</p>
+                <p>₹15,000/month</p>
+              </div>
+            </div>
+            <div class="card-back">
+              <p>Unlimited access to the gym. First 6 days personal training free for new members.</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal">Book now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gold Plan -->
+      <div class="col-12 col-sm-6 col-md-4 mb-4">
+        <div class="card-flip">
+          <div class="card-inner">
+            <div class="card-front" style="background-image: url('/images/gallery 7.png');">
+              <div class="overlay"></div>
+              <div class="text">
+                <p class=" mb-3">6 Months Fit-Oasis Gold</p>
+                <p>₹28,000/month</p>
+              </div>
+            </div>
+            <div class="card-back">
+              <p>Unlimited access to the gym. First 6 days personal training free for new members.</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal1">Book now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Platinum Plan -->
+      <div class="col-12 col-sm-6 col-md-4 mb-4">
+        <div class="card-flip">
+          <div class="card-inner">
+            <div class="card-front" style="background-image: url('/images/platinum image.png');">
+              <div class="overlay"></div>
+              <div class="text">
+                <p class="mb-3">12 months FIT-Oasis Platinum </p>
+                <p>₹40,000/month</p>
+              </div>
+            </div>
+            <div class="card-back">
+
+              <p>Unlimited access to the gym. First 6 days personal training free for new members.</p>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal" data-package="Silver">
+                Book now
+              </button>
+              
+ </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+
+  <!-- Divider -->
+  <div class="divider mt-5">
+    <div class="divider-line"></div>
+    <div class="divider-dot"></div>
+    <div class="divider-line"></div>
+  </div> 
+
+
+  <!-- Facilities -->
+  <section class="text-center">
+    <h3>FACILITIES AT FIT-OASIS</h3>
+    <p class="facility-text ">
+      A fully air-conditioned gym area with state-of-the-art equipment and facilities. Fit-Oasis makes it easy for
+      you
+      to keep fit and reach your fitness goals. We provide innovative cardio, strength and group fitness
+      solutions.
+      Separate changing rooms with showers and safety lockers available.
+    </p>
+  </section>
+
+  <!-- Gallery -->
+  <section class="container-fluid px-0">
+    <div class="flex-gallery">
+      <img src="/images/facilities image 1.png" alt="1" />
+      <img src="/images/facilities image 2.png" alt="2" />
+      <img src="/images/facilities image 3.png" alt="3" />
+      <img src="/images/facilities image 4.png" alt="4" />
+      <img src="/images/facilities image 5.png" alt="5" />
+      <img src="/images/facilities image 6.png" alt="6" />
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4 class="fw-bold">FIT-OASIS</h4>
+        <p>Fit-Oasis is a comprehensive fitness institute...</p>
+        <p>The Gym you call Home</p>
+        <p><strong>Terms & conditions</strong></p>
+        <p><strong>Privacy policy</strong></p>
+        <p class="copyright"><img src="/images/Copyright icon.png" width="20px"> Fit-Oasis. All Rights Reserved
+        </p>
+      </div>
+      <div class="footer-section">
+        <h4 class="fw-bold">Location:</h4>
+        <p>South Street, Fairlands<br>Salem, Tamilnadu<br>India - 636 302</p>
+        <h4 class="fw-bold mt-3">Contact us:</h4>
+        <p>Phone: +91 123457890<br>Email: info@fitoasis.com</p>
+      </div>
+      <div class="footer-section">
+        <h4 class="fw-bold">OUR TIMINGS</h4>
+        <p>Sunday to Saturday<br>5:30am to 10pm</p>
+        <p>Maintenance<br>Every afternoon<br>1.00pm to 2.00pm</p>
+        <div class="social-icons">
+          <img src="/images/links icon group - footer.png" alt="Social Links" />
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function () {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+
+
+
+    function toggleCards(direction) {
+      const set1 = document.getElementById('card-set-1');
+      const set2 = document.getElementById('card-set-2');
+      if (direction === 'forward') {
+        set1.classList.add('d-none');
+        set2.classList.remove('d-none');
+      } else {
+        set2.classList.add('d-none');
+        set1.classList.remove('d-none');
+      }
+    }
+
+    // Auto-fill once on click c                                                                                                                                                
+    let isAutoFilled = false;
+    document.getElementById('bookingForm').addEventListener('click', () => {
+      if (isAutoFilled) return;
+      document.getElementById('fullName').value = 'Yedidyah Cherub';
+      document.getElementById('email').value = 'yedidyahcherub@gmail.com';
+      document.getElementById('phone').value = '9000000090';
+      document.getElementById('dob').value = '1993-02-27';
+      document.getElementById('address').value = 'Salem, Tamil Nadu, India';
+      document.getElementById('package').value = 'PT';
+      document.getElementById('medical').value = 'None';
+      document.getElementById('agree').checked = true;
+      isAutoFilled = true;
+    });
+
+    // Form validation
+    (() => {
+      const form = document.getElementById('bookingForm');
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        if (form.checkValidity()) {
+          document.querySelector('#bookingModal .modal-content').innerHTML = `
+        <div class="modal-header">
+          <h5 class="modal-title text-success">Thank You!</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center">
+          <i class="bi bi-check-circle-fill text-success" style="font-size: 3rem;"></i>
+          <p class="mt-3 fs-4">Your rquest is succesfully sent.! </p>
+          <p>Kindly check your mail for MEMBERSHIP SIGNUP userID and PASSWORD after payment done!.</p>
+        </div>
+        <div class="modal-footer">
+         <button type="button" id="continueBtn" class="btn btn-success w-100">Continue</button>
+        
+
+         </div>
+      `;
+          document.getElementById('continueBtn').addEventListener('click', () => {
+            window.location.href = 'index.html';
+          });
+        }
+        form.classList.add('was-validated');
+      });
+    })();
+
+
+    const bookingModal = document.getElementById('bookingModal');
+  bookingModal.addEventListener('show.bs.modal', function (event) {
+    const button = event.relatedTarget;
+    const packageName = button.getAttribute('data-package');
+    
+    // Set the package dropdown to match the clicked plan
+    const packageSelect = document.getElementById('package');
+    if (packageSelect && packageName) {
+      packageSelect.value = packageName;
+    }
+  });
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

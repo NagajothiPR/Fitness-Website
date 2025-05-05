@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - Gym Website</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        canvas {
+            background-color: white;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gym Analytics Dashboard</h1>
+        <div>
+            <canvas id="attendanceChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for line chart (gym attendance over a period of time)
+        const ctx = document.getElementById('attendanceChart').getContext('2d');
+        const attendanceChart = new Chart(ctx, {
+            type: 'line', // Type of chart
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'], // Labels for x-axis
+                datasets: [{
+                    label: 'Monthly Gym Attendance',
+                    data: [50, 75, 100, 125, 150, 175, 200], // Data for y-axis (number of attendees)
+                    borderColor: 'rgba(75, 192, 192, 1)', // Line color
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)', // Line fill color
+                    tension: 0.4,
+                    fill: true, // To fill the area under the line
+                    pointRadius: 5, // Size of the points on the line
+                }]
+            },
+            options: {
+                responsive: true, // Make the chart responsive
+                scales: {
+                    y: {
+                        beginAtZero: true, // Start y-axis from zero
+                        ticks: {
+                            stepSize: 25, // Step size on y-axis
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true, // Display the chart legend
+                        position: 'top'
+                    },
+                    tooltip: {
+                        enabled: true, // Enable tooltips
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
