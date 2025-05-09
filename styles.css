@@ -1,0 +1,12 @@
+
+  body {
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .stat-box {
+    text-align: center;
+    min-width: 100%;
+  }
+  .col-3 div {
+    min-height: 100px;
+  }
